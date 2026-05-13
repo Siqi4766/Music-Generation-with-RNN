@@ -1,5 +1,5 @@
 # Music-Generation-with-RNN
-This project trains a recurrent neural network to generate music in ABC notation. It is adapted from MIT Introduction to Deep Learning Lab 1, Part 2: Music Generation with RNNs.
+This project trains a recurrent neural network to generate music in ABC notation. 
 
 The model learns from a dataset of Irish folk songs represented as text. Each character in the ABC notation is converted into a number, and the model is trained to predict the next character in a sequence. After training, the model generates new ABC text one character at a time, and valid generated songs are converted into `.wav` audio files.
 
