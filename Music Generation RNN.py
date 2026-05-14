@@ -93,7 +93,7 @@ def get_batch(vectorized_songs, seq_length, batch_size):
 
     return x_batch, y_batch
 
-### Defining the RNN Model ###
+# Defining the RNN Model
 
 class LSTMModel(nn.Module):
     """
@@ -164,7 +164,7 @@ class LSTMModel(nn.Module):
         out = self.fc(out)
         return out if not return_state else (out, state)
 
-### Defining the loss function ###
+# Defining the loss function
 
 cross_entropy = nn.CrossEntropyLoss() # instantiates the function
 def compute_loss(labels, logits):
@@ -187,7 +187,7 @@ def compute_loss(labels, logits):
     loss = cross_entropy(batched_logits, batched_labels)
     return loss
 
-### Hyperparameter setting and optimization ###
+# Hyperparameter setting and optimization
 
 vocab_size = len(vocab)
 
@@ -206,7 +206,7 @@ checkpoint_dir = './training_checkpoints'
 checkpoint_prefix = os.path.join(checkpoint_dir, "my_ckpt")
 os.makedirs(checkpoint_dir, exist_ok=True)
 
-### Create a Comet experiment to track our training run ###
+# Create a Comet experiment to track our training run
 
 def create_experiment():
   # end any prior experiments
@@ -224,7 +224,7 @@ def create_experiment():
 
   return experiment
 
-### Define optimizer and training operation ###
+# Define optimizer and training operation
 
 '''instantiate a new LSTMModel model for training using the hyperparameters
     created above.'''
@@ -258,9 +258,7 @@ def train_step(x, y):
 
   return loss
 
-##################
-# Begin training!#
-##################
+# Begin training!
 
 history = []
 plotter = mdl.util.PeriodicPlotter(sec=2, xlabel='Iterations', ylabel='Loss')
@@ -294,7 +292,7 @@ for iter in tqdm(range(params["num_training_iterations"])):
 torch.save(model.state_dict(), checkpoint_prefix)
 experiment.flush()
 
-### Prediction of a generated song ###
+# Prediction of a generated song
 
 def generate_text(model, start_string, generation_length=1000):
   # Evaluation step (generating ABC text using the learned RNN model)
@@ -329,7 +327,7 @@ def generate_text(model, start_string, generation_length=1000):
 
 generated_text = generate_text(model, start_string="X", generation_length=1000) 
 
-### Play back generated songs ###
+# Play back generated songs
 
 generated_songs = mdl.lab1.extract_song_snippet(generated_text)
 
