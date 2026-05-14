@@ -1,6 +1,6 @@
 # !pip install comet_ml > /dev/null 2>&1
 import comet_ml
-COMET_API_KEY = "eKCwZbbGU4SqAw8fcbPh9kPn0"
+COMET_API_KEY = ""
 
 import torch
 import torch.nn as nn
